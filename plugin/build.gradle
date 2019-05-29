@@ -11,8 +11,8 @@ plugins {
     id 'java-gradle-plugin'
 }
 
-apply from: 'gradle/publish.gradle'
-apply from: 'gradle/integrationTest.gradle'
+apply from: '../gradle/publish.gradle'
+apply from: '../gradle/integrationTest.gradle'
 
 repositories {
     mavenLocal()
