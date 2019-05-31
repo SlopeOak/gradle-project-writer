@@ -1,23 +1,11 @@
-buildscript {
-    repositories {
-        mavenLocal()
-    }
-}
-
 plugins {
     id 'groovy'
     id 'maven-publish'
-    id "com.adarshr.test-logger" version "1.6.0"
     id 'java-gradle-plugin'
 }
 
 apply from: '../gradle/publish.gradle'
 apply from: '../gradle/integrationTest.gradle'
-
-repositories {
-    mavenLocal()
-    jcenter()
-}
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.5.6'
