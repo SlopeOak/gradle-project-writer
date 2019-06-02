@@ -1,0 +1,51 @@
+package org.ssinc.projectwriter
+
+import org.gradle.testfixtures.ProjectBuilder
+import org.junit.Rule
+import org.junit.rules.TemporaryFolder
+import spock.lang.Specification
+import spock.lang.Unroll
+
+class WriteGradleDependenciesSpec extends Specification {
+
+    @Rule
+    TemporaryFolder temporaryFolder
+
+    def "Writes a build gradle file when write is called with a project"() {
+        given: 'there is a project instance'
+            def project = ProjectBuilder.builder()
+                    .withProjectDir(temporaryFolder.root)
+                    .build()
+
+        when: 'write is called with a project instance'
+            ProjectWriter.write(project, temporaryFolder.root)
+
+        then: 'a new build.gradle file exists'
+            def buildFile = new File(temporaryFolder.root, 'build.gradle')
+            buildFile != null && buildFile.exists()
+    }
+
+    @Unroll
+    def "Writes a dependency with scope '#scope' and dependency body '#dependency'"() {
+
+        given: 'there is a project'
+            def project = ProjectBuilder.builder().build()
+
+        and: 'the project has the dependency'
+            project.configurations.create(scope)
+            project.dependencies.add(scope, dependency)
+
+        when: 'write is called with the project instance'
+            ProjectWriter.write(project, temporaryFolder.root)
+
+        then: 'there is a new build.gradle file in the target folder'
+            def buildFile = new File(temporaryFolder.root, 'build.gradle')
+
+        and: 'the build.gradle file matches the expected body'
+            buildFile.text == new File(expected).text
+
+        where:
+            scope     | dependency                                    || expected
+            'compile' | 'org.ssinc.projectwriter:gradle-plugin:0.0.1' || 'src/integrationTest/resources/dependencies/external/compile/build.gradle'
+    }
+}
