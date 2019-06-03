@@ -1,6 +1,6 @@
 package org.ssinc.projectwriter.model
 
-class Dependency {
+class ExternalDependency {
 
     String configuration
     String group

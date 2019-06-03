@@ -1,5 +1,8 @@
 dependencies {
-  {{#dependencies}}
-    {{configuration}} '{{group}}:{{artifact}}:{{version}}'
-  {{/dependencies}}
+  {{#projectDependencies}}
+    {{> projectDependency}}
+  {{/projectDependencies}}
+  {{#externalDependencies}}
+    {{> externalDependency}}
+  {{/externalDependencies}}
 }

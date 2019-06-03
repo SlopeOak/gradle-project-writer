@@ -27,7 +27,6 @@ class WriteGradleDependenciesSpec extends Specification {
 
     @Unroll
     def "Writes a dependency with scope '#scope' and dependency body '#dependency'"() {
-
         given: 'there is a project'
             def project = ProjectBuilder.builder().build()
 
@@ -50,5 +49,31 @@ class WriteGradleDependenciesSpec extends Specification {
             'testCompile'    | 'org.ssinc.projectwriter:library:0.0.1'                         || 'testCompile.gradle'
             'implementation' | 'org.apache.commons:commons-lang3:3.8.1'                        || 'implementation.gradle'
             'integTest'      | 'some.other.library:with-an-artifact-id:and.a.version-SNAPSHOT' || 'integTest.gradle'
+    }
+
+    @Unroll
+    def "Writes a project dependency with scope '#scope' and dependency path '#dependency'"() {
+        given: 'there is a project'
+            def project = ProjectBuilder.builder().build()
+
+        and: 'the project has the dependency'
+            project.configurations.create(scope)
+            def otherDep = ProjectBuilder.builder()
+                    .withName('other')
+                    .build()
+            project.dependencies.add(scope, otherDep)
+
+        when: 'write is called with the project instance'
+            ProjectWriter.write(project, temporaryFolder.root)
+
+        then: 'there is a new build.gradle file in the target folder'
+            def buildFile = new File(temporaryFolder.root, 'build.gradle')
+
+        and: 'the build.gradle file matches the expected body'
+            buildFile.text == new File("src/integrationTest/resources/dependencies/projects/scopes/$expected").text
+
+        where:
+            scope     || expected
+            'compile' || 'projectOther.gradle'
     }
 }
