@@ -42,10 +42,13 @@ class WriteGradleDependenciesSpec extends Specification {
             def buildFile = new File(temporaryFolder.root, 'build.gradle')
 
         and: 'the build.gradle file matches the expected body'
-            buildFile.text == new File(expected).text
+            buildFile.text == new File("src/integrationTest/resources/dependencies/external/scopes/$expected").text
 
         where:
-            scope     | dependency                                    || expected
-            'compile' | 'org.ssinc.projectwriter:gradle-plugin:0.0.1' || 'src/integrationTest/resources/dependencies/external/compile/build.gradle'
+            scope            | dependency                                                      || expected
+            'compile'        | 'org.ssinc.projectwriter:gradle-plugin:0.0.1'                   || 'compile.gradle'
+            'testCompile'    | 'org.ssinc.projectwriter:library:0.0.1'                         || 'testCompile.gradle'
+            'implementation' | 'org.apache.commons:commons-lang3:3.8.1'                        || 'implementation.gradle'
+            'integTest'      | 'some.other.library:with-an-artifact-id:and.a.version-SNAPSHOT' || 'integTest.gradle'
     }
 }
