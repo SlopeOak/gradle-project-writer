@@ -1,3 +1,3 @@
 dependencies {
-    compile 'org.ssinc.projectwriter:gradle-plugin:0.0.1'
+    compile 'com.github.noobymcroar:gradle-plugin:0.0.1'
 }

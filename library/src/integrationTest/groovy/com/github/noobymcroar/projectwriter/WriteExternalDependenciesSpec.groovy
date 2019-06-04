@@ -31,8 +31,8 @@ class WriteExternalDependenciesSpec extends Specification {
 
         where:
             scope            | dependency                                                      || expected
-            'compile'        | 'org.ssinc.projectwriter:gradle-plugin:0.0.1'                   || 'compile.gradle'
-            'testCompile'    | 'org.ssinc.projectwriter:library:0.0.1'                         || 'testCompile.gradle'
+            'compile'        | 'com.github.noobymcroar:gradle-plugin:0.0.1'                   || 'compile.gradle'
+            'testCompile'    | 'com.github.noobymcroar:library:0.0.1'                         || 'testCompile.gradle'
             'implementation' | 'org.apache.commons:commons-lang3:3.8.1'                        || 'implementation.gradle'
             'integTest'      | 'some.other.library:with-an-artifact-id:and.a.version-SNAPSHOT' || 'integTest.gradle'
     }
