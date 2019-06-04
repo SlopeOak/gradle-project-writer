@@ -1,0 +1,3 @@
+dependencies {
+    integTest 'some.other.library:with-an-artifact-id:and.a.version-SNAPSHOT'
+}
