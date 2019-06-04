@@ -1,4 +1,4 @@
-package org.ssinc.projectwriter.model
+package com.github.noobymcroar.projectwriter.model
 
 import org.gradle.api.artifacts.ProjectDependency
 

@@ -1,4 +1,4 @@
-package org.ssinc
+package com.github.noobymcroar
 
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
