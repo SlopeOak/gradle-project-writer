@@ -4,8 +4,8 @@ import com.github.mustachejava.DefaultMustacheFactory
 import com.github.mustachejava.Mustache
 import com.github.mustachejava.MustacheFactory
 import org.gradle.api.Project
-import org.ssinc.projectwriter.model.ExternalDependency
-import org.ssinc.projectwriter.model.ProjectDependency
+import org.ssinc.projectwriter.model.ExternalDependencyView
+import org.ssinc.projectwriter.model.ProjectDependencyView
 
 class ProjectWriter {
 
@@ -22,38 +22,36 @@ class ProjectWriter {
         m.execute(buildGradle.newWriter(), context).flush()
     }
 
-    static List<ExternalDependency> externalDependencies(Project project) {
+    static List<ExternalDependencyView> externalDependencies(Project project) {
         def deps = []
 
         project.configurations.each { config ->
             config.dependencies
                     .findAll { it instanceof org.gradle.api.artifacts.ExternalDependency }
                     .each { org.gradle.api.artifacts.ExternalDependency dep ->
-                        def dependency = new ExternalDependency()
-                        dependency.configuration = config.name
-                        dependency.group = dep.group
-                        dependency.artifact = dep.name
-                        dependency.version = dep.version
+                        def dependencyView = new ExternalDependencyView()
+                        dependencyView.configuration = config.name
+                        dependencyView.dependency = dep
 
-                        deps.add(dependency)
+                        deps.add(dependencyView)
                     }
         }
 
         deps
     }
 
-    static List<ProjectDependency> projectDependencies(Project project) {
+    static List<ProjectDependencyView> projectDependencies(Project project) {
         def deps = []
 
         project.configurations.each { config ->
             config.dependencies
                     .findAll { it instanceof org.gradle.api.artifacts.ProjectDependency }
                     .each { org.gradle.api.artifacts.ProjectDependency dep ->
-                def dependency = new ProjectDependency()
-                dependency.configuration = config.name
-                dependency.projectname = dep.name
+                def dependencyView = new ProjectDependencyView()
+                dependencyView.configuration = config.name
+                dependencyView.dependency = dep
 
-                deps.add(dependency)
+                deps.add(dependencyView)
             }
         }
 
