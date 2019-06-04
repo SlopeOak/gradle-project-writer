@@ -1,6 +1,17 @@
-# Gradle Project Writer Plugin
-Writes a build.gradle file from a Project object. Primary use of this is to assist in a gradle migration project I'm
-working on, but it could also be used to support tests that use the ProjectBuilder.
+# Gradle Project Writer
+Writes build.gradle files from [Project](https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html) instances. One use case may
+be that you're writing test data with the 
+[Project Builder](https://docs.gradle.org/current/javadoc/org/gradle/testfixtures/ProjectBuilder.html) and decide you want to write it to 
+a file. Another use case is that you're modifying the state of your project and would like to persist those changes.
 
-The first thing this will support will be Groovy DSL (as that's supported by Gradle Init). I'll consider kotlin support
-at a later time.
+This project aims to create a library (useful for writing test data to file) and a plugin (useful for persisting project changes to file)
+for the Groovy DSL.
+
+## About the project
+The project has 2 subprojects:
+* [Library](https://github.com/NoobyMcROAR/gradle-project-writer-plugin/tree/master/library)
+* [Plugin](https://github.com/NoobyMcROAR/gradle-project-writer-plugin/tree/master/plugin)
+
+The library uses [Mustache](https://mustache.github.io/) to template the project files. 
+
+The code is written in Groovy.
