@@ -1,4 +1,4 @@
-package org.ssinc
+package com.github.slopeoak
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project

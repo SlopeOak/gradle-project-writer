@@ -1,4 +1,4 @@
-package org.ssinc
+package com.github.slopeoak
 
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome

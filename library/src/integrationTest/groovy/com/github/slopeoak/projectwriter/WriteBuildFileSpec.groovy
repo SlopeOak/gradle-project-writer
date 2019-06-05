@@ -1,4 +1,4 @@
-package org.ssinc.projectwriter
+package com.github.slopeoak.projectwriter
 
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Rule
