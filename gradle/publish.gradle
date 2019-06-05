@@ -2,8 +2,8 @@ publishing {
     publications {
         gradleProjectWriter(MavenPublication) {
             version project.version
-            artifactId = 'com.github.slopeoak.gradle-project-writer-plugin.gradle.plugin'
-            groupId = 'com.github.slopeoak.gradle-project-writer-plugin'
+            artifactId = "${project.group}.project-writer.gradle.plugin"
+            groupId = "${project.group}.project-writer"
             pom.withXml {
                 def root = asNode()
                 def dependency = root.appendNode('dependencies').appendNode('dependency')
