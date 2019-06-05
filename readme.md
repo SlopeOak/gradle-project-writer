@@ -9,8 +9,8 @@ for the Groovy DSL.
 
 ## About the project
 The project has 2 subprojects:
-* [Library](https://github.com/NoobyMcROAR/gradle-project-writer-plugin/tree/master/library)
-* [Plugin](https://github.com/NoobyMcROAR/gradle-project-writer-plugin/tree/master/plugin)
+* [Library](https://github.com/slopeoak/gradle-project-writer-plugin/tree/master/library)
+* [Plugin](https://github.com/slopeoak/gradle-project-writer-plugin/tree/master/plugin)
 
 The library uses [Mustache](https://mustache.github.io/) to template the project files. 
 

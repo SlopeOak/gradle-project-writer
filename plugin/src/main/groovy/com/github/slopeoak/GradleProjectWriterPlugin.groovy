@@ -1,4 +1,4 @@
-package com.github.noobymcroar
+package com.github.slopeoak
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

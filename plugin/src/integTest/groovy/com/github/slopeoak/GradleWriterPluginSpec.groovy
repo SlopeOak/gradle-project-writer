@@ -1,4 +1,4 @@
-package com.github.noobymcroar
+package com.github.slopeoak
 
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome

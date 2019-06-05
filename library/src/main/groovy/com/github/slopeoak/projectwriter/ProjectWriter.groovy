@@ -1,4 +1,4 @@
-package com.github.noobymcroar.projectwriter
+package com.github.slopeoak.projectwriter
 
 import com.github.mustachejava.DefaultMustacheFactory
 import com.github.mustachejava.Mustache
@@ -20,14 +20,14 @@ class ProjectWriter {
         m.execute(buildGradle.newWriter(), context).flush()
     }
 
-    static List<com.github.noobymcroar.projectwriter.model.ExternalDependencyView> externalDependencies(Project project) {
+    static List<com.github.slopeoak.projectwriter.model.ExternalDependencyView> externalDependencies(Project project) {
         def deps = []
 
         project.configurations.each { config ->
             config.dependencies
                     .findAll { it instanceof org.gradle.api.artifacts.ExternalDependency }
                     .each { org.gradle.api.artifacts.ExternalDependency dep ->
-                        def dependencyView = new com.github.noobymcroar.projectwriter.model.ExternalDependencyView()
+                        def dependencyView = new com.github.slopeoak.projectwriter.model.ExternalDependencyView()
                         dependencyView.configuration = config.name
                         dependencyView.dependency = dep
 
@@ -38,14 +38,14 @@ class ProjectWriter {
         deps
     }
 
-    static List<com.github.noobymcroar.projectwriter.model.ProjectDependencyView> projectDependencies(Project project) {
+    static List<com.github.slopeoak.projectwriter.model.ProjectDependencyView> projectDependencies(Project project) {
         def deps = []
 
         project.configurations.each { config ->
             config.dependencies
                     .findAll { it instanceof org.gradle.api.artifacts.ProjectDependency }
                     .each { org.gradle.api.artifacts.ProjectDependency dep ->
-                def dependencyView = new com.github.noobymcroar.projectwriter.model.ProjectDependencyView()
+                def dependencyView = new com.github.slopeoak.projectwriter.model.ProjectDependencyView()
                 dependencyView.configuration = config.name
                 dependencyView.dependency = dep
 
