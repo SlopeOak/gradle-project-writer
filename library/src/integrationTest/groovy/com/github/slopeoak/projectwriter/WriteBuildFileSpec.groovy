@@ -1,4 +1,4 @@
-package com.github.noobymcroar.projectwriter
+package com.github.slopeoak.projectwriter
 
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Rule

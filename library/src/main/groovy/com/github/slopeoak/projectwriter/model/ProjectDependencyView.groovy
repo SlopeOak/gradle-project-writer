@@ -1,4 +1,4 @@
-package com.github.noobymcroar.projectwriter.model
+package com.github.slopeoak.projectwriter.model
 
 import org.gradle.api.artifacts.ProjectDependency
 
