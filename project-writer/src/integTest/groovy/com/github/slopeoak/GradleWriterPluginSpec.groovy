@@ -16,7 +16,7 @@ class GradleWriterPluginSpec extends Specification {
         buildFile = folder.newFile('build.gradle')
         buildFile << """
             plugins {
-                id 'org.ssinc.gradle-project-writer-plugin'
+                id 'com.github.slopeoak.project-writer'
             }
         """
     }

@@ -1,16 +1,9 @@
 publishing {
     publications {
-        gradleProjectWriter(MavenPublication) {
+        pom(MavenPublication) {
             version project.version
-            artifactId = 'org.ssinc.gradle-project-writer-plugin.gradle.plugin'
-            groupId = 'org.ssinc.gradle-project-writer-plugin'
-            pom.withXml {
-                def root = asNode()
-                def dependency = root.appendNode('dependencies').appendNode('dependency')
-                dependency.appendNode('groupId', project.group)
-                dependency.appendNode('artifactId', project.name)
-                dependency.appendNode('version', project.version)
-            }
+            artifactId = project.name
+            groupId = project.group
         }
     }
 }
@@ -18,7 +11,7 @@ publishing {
 task publishPluginToMavenLocal {
     description = 'Publishes the plugin and the jar to maven local'
     group = 'Publishing'
-    dependsOn build
+
+    dependsOn shadowJar
     dependsOn publishToMavenLocal
-    dependsOn publishGradleProjectWriterPublicationToMavenLocal
 }

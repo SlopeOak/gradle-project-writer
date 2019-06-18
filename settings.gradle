@@ -1,1 +1,8 @@
-include 'plugin', 'library'
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+
+include 'project-writer', 'library'
