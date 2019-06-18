@@ -1,0 +1,21 @@
+gradlePlugin {
+    plugins {
+        projectWriter {
+            id = 'com.github.slopeoak.project-writer'
+            implementationClass = 'com.github.slopeoak.GradleProjectWriterPlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/SlopeOak/gradle-project-writer'
+    vcsUrl = 'https://github.com/SlopeOak/gradle-project-writer'
+    description = 'Write the state of a project instance to a build file.'
+    tags = ['projectwriter']
+
+    plugins {
+        projectWriter {
+            displayName = 'Project writer plugin'
+        }
+    }
+}

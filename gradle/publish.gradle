@@ -1,23 +1,9 @@
 publishing {
     publications {
-        gradleProjectWriter(MavenPublication) {
+        pom(MavenPublication) {
             version project.version
-            artifactId = "${project.group}.project-writer.gradle.plugin"
-            groupId = "${project.group}.project-writer"
-            pom.withXml {
-                def root = asNode()
-                def dependency = root.appendNode('dependencies').appendNode('dependency')
-                dependency.appendNode('groupId', project.group)
-                dependency.appendNode('artifactId', 'project-writer')
-                dependency.appendNode('version', project.version)
-                dependency.appendNode('classifier', 'all')
-            }
-        }
-
-        maven(MavenPublication) {
-            groupId 'com.github.slopeoak'
-            artifactId 'project-writer'
-            artifact shadowJar
+            artifactId = project.name
+            groupId = project.group
         }
     }
 }
@@ -28,5 +14,4 @@ task publishPluginToMavenLocal {
 
     dependsOn shadowJar
     dependsOn publishToMavenLocal
-    dependsOn publishGradleProjectWriterPublicationToMavenLocal
 }

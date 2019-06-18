@@ -13,7 +13,7 @@ class WriteProjectTask extends DefaultTask {
 
     @Inject
     WriteProjectTask(Project project) {
-        group = 'Plugin writer'
+        group = 'Project writer'
         description = 'Write the project to a build.gradle file'
         this.project = project
     }
