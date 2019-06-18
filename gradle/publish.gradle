@@ -8,9 +8,16 @@ publishing {
                 def root = asNode()
                 def dependency = root.appendNode('dependencies').appendNode('dependency')
                 dependency.appendNode('groupId', project.group)
-                dependency.appendNode('artifactId', project.name)
+                dependency.appendNode('artifactId', 'project-writer')
                 dependency.appendNode('version', project.version)
+                dependency.appendNode('classifier', 'all')
             }
+        }
+
+        maven(MavenPublication) {
+            groupId 'com.github.slopeoak'
+            artifactId 'project-writer'
+            artifact shadowJar
         }
     }
 }
@@ -18,7 +25,8 @@ publishing {
 task publishPluginToMavenLocal {
     description = 'Publishes the plugin and the jar to maven local'
     group = 'Publishing'
-    dependsOn build
+
+    dependsOn shadowJar
     dependsOn publishToMavenLocal
     dependsOn publishGradleProjectWriterPublicationToMavenLocal
 }
