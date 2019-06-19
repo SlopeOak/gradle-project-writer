@@ -7,6 +7,8 @@ a file. Another use case is that you're modifying the state of your project and 
 This project aims to create a library (useful for writing test data to file) and a plugin (useful for persisting project changes to file)
 for the Groovy DSL.
 
+This plugin can be found in the [Gradle plugins repository](https://plugins.gradle.org/plugin/com.github.slopeoak.project-writer)
+
 ## About the project
 The project has 2 subprojects:
 * [Library](https://github.com/slopeoak/project-writer/tree/master/library)
