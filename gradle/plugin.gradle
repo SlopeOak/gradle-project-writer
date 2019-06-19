@@ -19,3 +19,45 @@ pluginBundle {
         }
     }
 }
+
+jar.enabled = false
+shadowJar.classifier = ''
+
+publishing {
+    publications {
+        pluginMaven(MavenPublication) {
+            shadow.component(it)
+
+            pom {
+                name = 'Project writer plugin'
+                description = 'Write a project to a file.'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'SlopeOak'
+                        name = 'Stuart Sinclair'
+                    }
+                }
+            }
+
+            pom.withXml {
+                asNode().dependencies.'*'.findAll() {
+                    it.artifactId.text() == 'library'
+                }.each() {
+                    it.parent().remove(it)
+                }
+
+                asNode().'dependencies'.findAll() { Node deps ->
+                    deps.children().size() == 0
+                }.each() {
+                    it.parent().remove(it)
+                }
+            }
+        }
+    }
+}
