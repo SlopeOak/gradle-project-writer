@@ -1,3 +1,10 @@
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    archiveClassifier = 'sources'
+}
+
+tasks.build.dependsOn tasks.sourcesJar
+
 publishing {
     publications {
         gradleProjectWriter(MavenPublication) {
@@ -36,32 +43,7 @@ publishing {
             groupId 'com.github.slopeoak'
             artifactId 'project-writer'
             artifact shadowJar
+            artifact sourcesJar
         }
     }
 }
-
-//publishing {
-//    publications {
-//        plugin(MavenPublication) {
-//            shadow.component(it)
-//
-//            pom {
-//
-//            }
-//
-//            pom.withXml {
-//                asNode().dependencies.'*'.findAll() {
-//                    it.artifactId.text() == 'library'
-//                }.each() {
-//                    it.parent().remove(it)
-//                }
-//
-//                asNode().'dependencies'.findAll() { Node deps ->
-//                    deps.children().size() == 0
-//                }.each() {
-//                    it.parent().remove(it)
-//                }
-//            }
-//        }
-//    }
-//}

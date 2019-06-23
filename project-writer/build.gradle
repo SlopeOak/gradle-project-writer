@@ -4,7 +4,6 @@ plugins {
     id 'java-gradle-plugin'
     id "com.github.johnrengelman.shadow" version "5.0.0"
     id "com.jfrog.bintray" version "1.8.4"
-//    id "com.gradle.plugin-publish" version "0.10.1"
 }
 
 apply from: '../gradle/integrationTest.gradle'
