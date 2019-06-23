@@ -1,9 +1,12 @@
 plugins {
     id 'groovy'
     id "com.github.johnrengelman.shadow" version "5.0.0"
+    id "com.jfrog.bintray" version "1.8.4"
+    id 'maven-publish'
 }
 
 apply from: '../gradle/integrationTest.gradle'
+apply from: '../gradle/bintrayPublish.gradle'
 
 dependencies {
     shadow 'org.codehaus.groovy:groovy-all:2.5.6'

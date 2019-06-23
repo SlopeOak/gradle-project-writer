@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-include 'project-writer', 'library'
+include 'project-writer', 'gradle-project-writer-library'

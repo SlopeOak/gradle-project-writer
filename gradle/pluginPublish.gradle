@@ -1,0 +1,67 @@
+publishing {
+    publications {
+        gradleProjectWriter(MavenPublication) {
+            version project.version
+            artifactId = "${project.group}.project-writer.gradle.plugin"
+            groupId = "${project.group}.project-writer"
+
+            pom {
+                name = 'Project writer plugin'
+                description = 'Write a project to a file.'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'SlopeOak'
+                        name = 'Stuart Sinclair'
+                    }
+                }
+
+                withXml {
+                    def root = asNode()
+                    def dependency = root.appendNode('dependencies').appendNode('dependency')
+                    dependency.appendNode('groupId', project.group)
+                    dependency.appendNode('artifactId', 'project-writer')
+                    dependency.appendNode('version', project.version)
+                    dependency.appendNode('classifier', 'all')
+                }
+            }
+        }
+
+        pluginShadow(MavenPublication) {
+            groupId 'com.github.slopeoak'
+            artifactId 'project-writer'
+            artifact shadowJar
+        }
+    }
+}
+
+//publishing {
+//    publications {
+//        plugin(MavenPublication) {
+//            shadow.component(it)
+//
+//            pom {
+//
+//            }
+//
+//            pom.withXml {
+//                asNode().dependencies.'*'.findAll() {
+//                    it.artifactId.text() == 'library'
+//                }.each() {
+//                    it.parent().remove(it)
+//                }
+//
+//                asNode().'dependencies'.findAll() { Node deps ->
+//                    deps.children().size() == 0
+//                }.each() {
+//                    it.parent().remove(it)
+//                }
+//            }
+//        }
+//    }
+//}

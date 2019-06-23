@@ -1,0 +1,51 @@
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_API_KEY')
+    publications = ['library', 'gradleProjectWriter', 'pluginShadow']
+    pkg {
+        repo = 'Gradle-Init'
+        name = 'Project-writer'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/SlopeOak/gradle-project-writer'
+        labels = ['gradle', 'maven']
+        publicDownloadNumbers = true
+    }
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+    }
+    developers {
+        developer {
+            id "SlopeOak"
+            name "Stuart Sinclair"
+        }
+    }
+
+    scm {
+        url "https://github.com/SlopeOak/gradle-project-writer"
+    }
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+            groupId project.group
+            artifactId project.name
+            version project.version
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', project.description)
+                root.appendNode('name', project.name)
+                root.appendNode('url', 'https://github.com/SlopeOak/gradle-project-writer')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
