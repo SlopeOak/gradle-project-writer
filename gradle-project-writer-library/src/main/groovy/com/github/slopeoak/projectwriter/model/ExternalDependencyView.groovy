@@ -6,4 +6,5 @@ class ExternalDependencyView {
 
     String configuration
     ExternalDependency dependency
+    boolean verbose
 }

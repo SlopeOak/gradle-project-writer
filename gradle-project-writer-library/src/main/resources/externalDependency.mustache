@@ -1,1 +1,1 @@
-{{configuration}} '{{dependency.group}}:{{dependency.name}}:{{dependency.version}}'
+{{#verbose}}{{configuration}}(group: '{{dependency.group}}', name: '{{dependency.name}}', version: '{{dependency.version}}'{{#dependency.targetConfiguration}}, targetConfiguration: '{{dependency.targetConfiguration}}'{{/dependency.targetConfiguration}}){{/verbose}}{{^verbose}}{{configuration}} '{{dependency.group}}:{{dependency.name}}:{{dependency.version}}'{{/verbose}}
