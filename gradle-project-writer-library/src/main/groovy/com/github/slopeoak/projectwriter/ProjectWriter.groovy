@@ -30,7 +30,7 @@ class ProjectWriter {
                         def dependencyView = new com.github.slopeoak.projectwriter.model.ExternalDependencyView()
                         dependencyView.configuration = config.name
                         dependencyView.dependency = dep
-                        dependencyView.verbose = dep.targetConfiguration != null
+                        dependencyView.verbose = dep.targetConfiguration != null && dep.targetConfiguration != 'jar'
 
                         deps.add(dependencyView)
                     }
